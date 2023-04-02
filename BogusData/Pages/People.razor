@@ -1,0 +1,79 @@
+﻿@page "/people"
+@inject DataGenerator data
+<h3>People</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Street Address</td>
+            <td>City</td>
+            <td>State</td>
+            <td>Zip Code</td>
+            <td>Credit Rating</td>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in people)
+        {
+            <tr>
+                <td>
+                    @p.Id
+                </td>
+           
+       
+                <td>
+                    @p.FirstName
+                </td>
+          
+                <td>
+                    @p.LastName
+                </td>
+          
+                <td>
+                    @p.Email
+                </td>
+            
+                <td>
+                    @p.Phone
+                </td>
+          
+                <td>
+                    @p.StreetAddress
+                </td>
+           
+                <td>
+                    @p.City
+                </td>
+         
+                <td>
+                    @p.State
+                </td>
+           
+                <td>
+                    @p.Zip
+                </td>
+           
+                <td>
+                    @p.Rating
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<button type="button" class="btn btn-outline-primary" @onclick="LoadData">Load More Data</button>
+
+@code {
+    List<PersonModel> people = new List<PersonModel>();
+    private void LoadData()
+    {
+        var results = data.GenerateBulk().Take(100);
+        people.AddRange(results);
+    }
+}
+
